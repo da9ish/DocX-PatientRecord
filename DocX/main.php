@@ -11,7 +11,7 @@
 		$conn = new DB_Connect();
 		$db = $conn->connect();
 
-		$query = "SELECT * FROM `patient` WHERE 1 ORDER BY `f_name` ASC";
+		$query = "SELECT * FROM `patient` ORDER BY `f_name` ASC";
 		$result = mysqli_query($db, $query);
 
 		ob_clean();
@@ -70,6 +70,24 @@
 
 			location.reload();
 		}
+
+		function edit(p_id){
+			location.href = "http://localhost/DocX/edit.php?p_id="+p_id;
+		}
+
+		function filter(){
+			var ajax = new XMLHttpRequest();
+			var input = document.getElementById("search");
+
+			ajax.onreadystatechanged = function(){
+				if (this.readyState == 4 && this.status == 200) {
+					console.log(this.responseText)					
+				}
+			}
+
+			ajax.open("GET", "http://localhost/DocX/include/search.php?search_txt="+input.value, true);
+			ajax.send();
+		}
 	</script>
 
 	<style type="text/css">	
@@ -82,6 +100,8 @@
 		nav{
 			background-color: #FFC107;			
 			box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+			position: fixed;
+			width: 100%;
 		}
 
 		.nav{
@@ -149,6 +169,7 @@
 			max-width: 800px;
 			height: auto;
 			margin: auto;
+			padding-top: 116px; 
 		}
 
 		#tab_1{
@@ -274,12 +295,12 @@
 			<h2>DocX</h2>
 			<div style="float: right;">
 			<img class="search_icon" src="magnify.png">
-			<input type="search" name="search" placeholder="Search" class="search_txt">
+			<input onkeyup="filter()" id="search" type="search" name="search" placeholder="Search" class="search_txt">
 			</div>
 			<ul>
 				<li id="1" class="current" onclick="tabsOnClick('1')">VIEW</li>
 				<li id="2" onclick="tabsOnClick('2')">CREATE</li>
-				<li id="3" onclick="tabsOnClick('3')">UPDATE</li>
+				<li id="3" onclick="tabsOnClick('3')">HISTORY</li>
 			</ul>
 			<div id="tab_strip"></div>
 		</div>

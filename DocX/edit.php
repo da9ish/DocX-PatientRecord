@@ -108,7 +108,7 @@
 			$conn = new DB_Connect();
 			$db = $conn->connect();
 
-			$id = $_GET['p_id'];
+			$id = $_GET['id'];
 			$_SESSION['id'] = $id;
 
 			$query = "SELECT * FROM `patient` WHERE `_id` = '".$id."'";
@@ -137,7 +137,8 @@
 				<p>Gender: <input type=\"radio\" name=\"gender\" value=\"Male\" ".$male.">Male
 				<input type=\"radio\" name=\"gender\" value=\"Female\" ".$female.">Female</p>
 				<p>Weight: <input type=\"number\" value=\"".$res['weight']."\" step=\"any\" name=\"weight\" placeholder=\"Weight\">kgs</p>
-				<p>Height: <input type=\"number\" value=\"".$res['height']."\" step=\"any\" name=\"height\" placeholder=\"Height\">cm</p>
+				<p>Height: <input type=\"number\" value=\"".$res['height']."\" step=\"any\" name=\"height\" placeholder=\"Height\">cms</p>
+				<p>Mobile No.: <input type=\"number\" value=\"".$res['mob_no']."\" name=\"mob_no\" placeholder=\"Mobile No.\"></p>
 				<p>Daignosis: <textarea name=\"diagnosis\" placeholder=\"Daignosis\">".$res['diagnosis']."</textarea></p>
 				<p>Prescription: <textarea name=\"prescription\" placeholder=\"Prescription\">".$res['prescription']."</textarea></p>
 				<input class=\"submit\" type=\"submit\" name=\"Submit\" value=\"UPDATE\">

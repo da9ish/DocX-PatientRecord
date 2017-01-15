@@ -11,11 +11,12 @@
 	$gender = $_POST['gender'];
 	$weight = $_POST['weight'];
 	$height = $_POST['height'];
+	$mob = $_POST['mob_no'];
 	$diag = $_POST['diagnosis'];
 	$pres = $_POST['prescription'];
 	$date = date("Y/m/d");
 
-	$query = "INSERT INTO `patient` (`_id`, `f_name`, `l_name`, `age`, `gender`, `weight`, `height`, `diagnosis`, `prescription`, `last_visited`, `created_at`) VALUES (NULL,'".$f_name."', '".$l_name."', '".$age."', '".$gender."', '".$weight."', '".$height."', '".$diag."', '".$pres."', '".$date."', '".$date."')";
+	$query = "INSERT INTO `patient` (`_id`, `f_name`, `l_name`, `age`, `gender`, `weight`, `height`, `mob_no`, `diagnosis`, `prescription`, `last_visited`, `created_at`) VALUES (NULL,'".$f_name."', '".$l_name."', '".$age."', '".$gender."', '".$weight."', '".$height."', '".$mob."', '".$diag."', '".$pres."', '".$date."', '".$date."')";
 
 	$query2 = "INSERT INTO `history`(`p_name`, `diagnosis`, `prescription`, `last_visited`) VALUES ('".$f_name." ".$l_name."','".$diag."','".$pres."','".$date."')";
 	mysqli_query($db, $query2);

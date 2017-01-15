@@ -67,24 +67,25 @@
 		}
 
 		function patient_delete(p_id){
-			var ajax = new XMLHttpRequest();
-
-			ajax.onreadystatechanged = function(){
-				if (this.readyState == 4 && this.status == 200) {
-					console.log(this.responseText)
-					document.getElementById("toast_txt").innerHTML = this.responseText;
-					document.getElementById("toast").style.display = "flex";
-				}
-			}
+			var ajax = new XMLHttpRequest();			
 
 			ajax.open("GET", "http://localhost/DocX/include/delete.php?id="+p_id, true);
 			ajax.send();
 
-			location.reload();
+			window.location.reload();
+		}
+
+		function deleteHistory(p_id){
+			var ajax = new XMLHttpRequest();
+
+			ajax.open("GET", "http://localhost/DocX/include/delete_history.php?id="+p_id, true);
+			ajax.send();
+
+			window.location.href = "http://localhost/DocX/main.php";
 		}
 
 		function edit(p_id){
-			location.href = "http://localhost/DocX/edit.php?p_id="+p_id;
+			location.href = "http://localhost/DocX/edit.php?id="+p_id;
 		}
 
 		function filter(){
@@ -380,7 +381,11 @@
 
 		<?php
 
-			while($data = mysqli_fetch_assoc($result)){
+			if (mysqli_num_rows($result)==0) {
+				echo "<center><img style=\"margin-top: 100px;\" src=\"fav_icon.png\"><p>No Patients Record.</p></center>";
+			}
+			
+			while($data = mysqli_fetch_assoc($result)){					
 
 				if($data['gender']=="Male"){
 					$gender = "male.png";
@@ -393,14 +398,15 @@
 					<div>
 						<p style=\"font-size: 25px; margin-bottom: 0;\"><strong>Name:</strong> ".$data['f_name']." ".$data['l_name']."</p>
 						<p><strong>Age:</strong> ".$data['age']."</p>
-						<p><strong>Weight:</strong> ".$data['weight']."kgs <strong>		Height:</strong> ".$data['height']."cm</p>
+						<p><strong>Weight:</strong> ".$data['weight']."kgs <strong>		Height:</strong> ".$data['height']."cms</p>
 						<p><strong>Last Diagnosis:</strong> ".$data['diagnosis']."</p>
 						<p><strong>Last Prescription:</strong> ".$data['prescription']."</p>
 						<p><strong>Last Treated On:</strong> ".$data['last_visited']."</p>
+						<p><strong>Mobile No.:</strong> ".$data['mob_no']."</p>
 					</div>
 					<div>
 						<div class=\"fab_edit\" onclick=\"edit('".$data['_id']."')\"><img src=\"border-color.png\"></div>
-						<div class=\"fab_delete\" onclick=\"openDialog('".$data['_id']."', '".$data['f_name']." ".$data['l_name']."')\"><img src=\"delete.png\"></div>
+						<div class=\"fab_delete\" onclick=\"patient_delete('".$data['_id']."')\"><img src=\"delete.png\"></div>
 					</div>
 				</div>\n";
 			}
@@ -424,6 +430,7 @@
 				<input type="radio" name="gender" value="Female">Female</p>
 				<p>Weight: <input type="number" step="any" name="weight" placeholder="Weight">kgs</p>
 				<p>Height: <input type="number" step="any" name="height" placeholder="Height">cm</p>
+				<p>Mobile No.: <input type="number" name="mob_no" placeholder="Mobile No."></p>
 				<p>Daignosis: <textarea name="diagnosis" placeholder="Daignosis"></textarea></p>
 				<p>Prescription: <textarea name="prescription" placeholder="Prescription"></textarea></p>
 				<input class="submit" type="submit" name="Submit" value="CREATE">
@@ -443,6 +450,7 @@
 					<th>Diagnosis</th>
 					<th>Prescrition</th>
 					<th>LastVisited</th>
+					<th>Actions</th>
 				</tr>
 
 				<?php
@@ -457,7 +465,8 @@
 					<td>".$his['p_name']."</td>
 					<td>".$his['diagnosis']."</td>
 					<td>".$his['prescription']."</td>
-					<td>".$his['last_visited']."</td>					
+					<td>".$his['last_visited']."</td>
+					<td><center><img onclick=\"deleteHistory('".$his['_id']."')\" src=\"delete_1.png\"></center></td>
 				</tr>";
 
 				}				

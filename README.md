@@ -8,6 +8,14 @@ Its still under construction :D
 * View patients record.
 * Delete patients record.
 
+# Screenshots
+
+<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_1.png"/>
+<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_2.png"/>
+<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_3.png"/>
+<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_4.png"/>
+<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_5.png"/>
+
 # Instructions to use
 * Install XAMPP
 <a href="https://www.apachefriends.org/index.html">Download</a>

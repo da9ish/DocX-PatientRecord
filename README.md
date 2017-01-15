@@ -10,11 +10,12 @@ Its still under construction :D
 
 # Screenshots
 
-<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_1.png"/>
-<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_2.png"/>
-<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_3.png"/>
-<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_4.png"/>
-<img src="https://github.com/DanishShah/Socialize/blob/master/main/Socialize/ss_5.png"/>
+<img src="https://github.com/DanishShah/DocX-PatientRecord/blob/master/DocX/ss_1.png"/>
+<img src="https://github.com/DanishShah/DocX-PatientRecord/blob/master/DocX/ss_2.png"/>
+<img src="https://github.com/DanishShah/DocX-PatientRecord/blob/master/DocX/ss_3.png"/>
+<img src="https://github.com/DanishShah/DocX-PatientRecord/blob/master/DocX/ss_4.png"/>
+<img src="https://github.com/DanishShah/DocX-PatientRecord/blob/master/DocX/ss_5.png"/>
+
 
 # Instructions to use
 * Install XAMPP

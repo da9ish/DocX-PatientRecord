@@ -2,6 +2,12 @@
 A patient record keeping web application for Doctors.
 Its still under construction :D
 
+# Features
+* Create patients record.
+* Update patients record.
+* View patients record.
+* Delete patients record.
+
 # Instructions to use
 * Install XAMPP
 <a href="https://www.apachefriends.org/index.html">Download</a>

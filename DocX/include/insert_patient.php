@@ -17,12 +17,16 @@
 
 	$query = "INSERT INTO `patient` (`_id`, `f_name`, `l_name`, `age`, `gender`, `weight`, `height`, `diagnosis`, `prescription`, `last_visited`, `created_at`) VALUES (NULL,'".$f_name."', '".$l_name."', '".$age."', '".$gender."', '".$weight."', '".$height."', '".$diag."', '".$pres."', '".$date."', '".$date."')";
 
-	$row = mysqli_query($db, $query);
-	header("Location: http://localhost/DocX/main.php");
-	exit();
+	$query2 = "INSERT INTO `history`(`p_name`, `diagnosis`, `prescription`, `last_visited`) VALUES ('".$f_name." ".$l_name."','".$diag."','".$pres."','".$date."')";
+	mysqli_query($db, $query2);
+
+	$row = mysqli_query($db, $query);	
 
 	if ($row==null) {
 		echo "Null";
+	}else{
+		header("Location: http://localhost/DocX/main.php");
+		exit();
 	}
 
 

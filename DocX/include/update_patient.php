@@ -15,9 +15,15 @@
 	$height = $_POST['height'];
 	$diag = $_POST['diagnosis'];
 	$pres = $_POST['prescription'];	
+	$date = date("Y/m/d");
 	$id = $_SESSION['id'];
 
 	$query = "UPDATE `patient` SET `f_name`='".$f_name."',`l_name`='".$l_name."',`age`='".$age."',`gender`='".$gender."',`weight`='".$weight."',`height`='".$height."',`diagnosis`='".$diag."',`prescription`='".$pres."' WHERE `_id` = '".$id."'";
+
+	$query2 = "INSERT INTO `history`(`p_name`, `diagnosis`, `prescription`, `last_visited`) VALUES ('".$f_name." ".$l_name."','".$diag."','".$pres."','".$date."')";
+	mysqli_query($db, $query2);
+
+	$row = mysqli_query($db, $query);
 
 	$row = mysqli_query($db, $query);
 	

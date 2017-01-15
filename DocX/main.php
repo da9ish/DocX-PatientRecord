@@ -54,6 +54,18 @@
 			c_tab = id;
 		}
 
+		function openDialog(p_id, name){
+			var dialog = document.getElementById('del_dialog');
+			dialog.style.display = "block";
+			var title = document.getElementById('del_title');
+			title.innerHTML = "Are you sure you want to delete " + name + "'s data?"
+
+			var yes = document.getElementById('yes');
+			yes.onclick = patient_delete(p_id);
+			var no = document.getElementById('no');
+			no.onclick = dialog.style.display = "none";
+		}
+
 		function patient_delete(p_id){
 			var ajax = new XMLHttpRequest();
 
@@ -285,6 +297,54 @@
 			align-items: center;
 		}
 
+		table{
+			font-family: 'Roboto', sans-serif;
+			background-color: #F5F5F5;
+		}
+
+		th{
+			font-family: 'Roboto', sans-serif;
+			padding: 10px;
+			color: #fff;
+			background-color: #FFA000;
+		}
+
+		td{
+			padding: 10px;
+		}
+
+		.table{
+			width: auto;			
+			height: auto;
+			background-color: #fafafa;
+			box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+		}
+
+		#del_dialog{
+			display: none;
+		    border-radius: 3px;
+		    background-color: var(--200);
+		    margin: 7% auto;
+		    padding: 20px;
+		    width: 300px;		    
+		    height: auto;
+		    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+		}
+
+		.btn{
+			width: 50px;
+			height: 30px;
+			border-radius: 2px;
+			border: none;
+			background-color: #E0E0E0;
+			color: #fff;
+			outline: 0;
+		}
+
+		.btn:hover{
+			box-shadow: 0px 2px 2px 0px rgba(0,0,0,.2);
+		}
+
 
 	</style>
 </head>
@@ -307,6 +367,15 @@
 	</nav>
 
 	<section class="container">
+
+		<div id="del_dialog">
+			<h2 id="del_title"></h2>
+			<div>
+				<button class="btn" id="yes">YES</button>
+				<button class="btn" id="no">NO</button>
+			</div>
+		</div>
+
 		<div id="tab_1">
 
 		<?php
@@ -331,7 +400,7 @@
 					</div>
 					<div>
 						<div class=\"fab_edit\" onclick=\"edit('".$data['_id']."')\"><img src=\"border-color.png\"></div>
-						<div class=\"fab_delete\" onclick=\"patient_delete('".$data['_id']."')\"><img src=\"delete.png\"></div>
+						<div class=\"fab_delete\" onclick=\"openDialog('".$data['_id']."', '".$data['f_name']." ".$data['l_name']."')\"><img src=\"delete.png\"></div>
 					</div>
 				</div>\n";
 			}
@@ -366,12 +435,38 @@
 		</div>
 
 		<div id="tab_3">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="table">
+			<table width="100%" >
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Diagnosis</th>
+					<th>Prescrition</th>
+					<th>LastVisited</th>
+				</tr>
+
+				<?php
+
+				$query2 = "SELECT * FROM `history` ORDER BY `p_name`";
+				$result = mysqli_query($db, $query2);
+
+				while ($his = mysqli_fetch_assoc($result)) {
+					
+					echo "<tr>
+					<td>".$his['_id']."</td>
+					<td>".$his['p_name']."</td>
+					<td>".$his['diagnosis']."</td>
+					<td>".$his['prescription']."</td>
+					<td>".$his['last_visited']."</td>					
+				</tr>";
+
+				}				
+
+				?>
+				
+			</table>
+
+			</div>
 		</div>
 
 		<div id="toast">

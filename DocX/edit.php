@@ -6,6 +6,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100i,300,400,500" rel="stylesheet">
 	<link rel="icon" href="fav_icon.png">
 
+	<script type="text/javascript">
+		function back(){
+			location.href = "http://localhost/DocX/main.php";
+		}
+	</script>
+
 	<style type="text/css">	
 		body{			
 			margin: 0;
@@ -22,7 +28,7 @@
 
 		.nav{
 			height: auto;			
-			padding: 20px 10px 10px 10px;
+			padding: 10px 10px 10px 10px;
 			width: 100%;
 			max-width: 800px;
 			margin: auto;
@@ -49,7 +55,7 @@
 			max-width: 800px;
 			height: auto;
 			margin: auto;
-			padding-top: 116px; 
+			padding-top: 65px;
 		}
 
 		input{
@@ -87,7 +93,7 @@
 
 	<nav>
 		<div class="nav">
-			<img src="arrow-left.png">
+			<img onclick="back()" src="arrow-left.png">
 			<h2>DocX</h2>
 		</div>
 	</nav>

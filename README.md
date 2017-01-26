@@ -24,5 +24,8 @@ Its still under construction :D
 * Download and place all the files in htdocs folder under xampp folder "C:\user\xampp\htdoc".
 Import the docx.sql file in phpmyadmin.
 
+* Create a new record every time a new patient visits
+* Next time the patient visits just update the records and their record history will be stored in history tab.
+
 * Enjoy
 Its done :D

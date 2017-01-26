@@ -22,7 +22,7 @@ Its still under construction :D
 <a href="https://www.apachefriends.org/index.html">Download</a>
 
 * Download and place all the files in htdocs folder under xampp folder "C:\user\xampp\htdoc".
-Place the MySql files in mysql\data folder under xampp folder "C:\user\xampp\mysql\data".
+Import the docx.sql file in phpmyadmin.
 
 * Enjoy
 Its done :D

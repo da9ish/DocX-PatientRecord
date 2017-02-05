@@ -6,7 +6,7 @@
 
 		ob_start();
 
-		include("/xamp/htdocs/DocX/include/DBConnect.php");
+		include("/xampp/htdocs/DocX/include/DBConnect.php");
 
 		$conn = new DB_Connect();
 		$db = $conn->connect();

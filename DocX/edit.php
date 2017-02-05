@@ -60,11 +60,17 @@
 
 		input{
 			border: 0;
-			border-bottom: 1px solid #121212;
+			border-bottom: 2px solid rgba(0,0,0,0.25);
 			font-size: 16px;
 			outline: 0;
 			padding: 3px;
 			margin-left: 5px;
+			transition-duration: 0.3s;
+		}
+
+		input:focus{
+			border-bottom: 2px solid #FFC107;
+			transition-duration: 0.3s;
 		}
 
 		.submit{

@@ -7,6 +7,7 @@ Its still under construction :D
 * Update patients record.
 * View patients record.
 * Delete patients record.
+* Search patient.
 
 # Screenshots
 

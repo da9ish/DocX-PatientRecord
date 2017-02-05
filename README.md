@@ -1,6 +1,5 @@
 # DocX-PatientRecord
 A patient record keeping web application for Doctors.
-Its still under construction :D
 
 # Features
 * Create patients record.

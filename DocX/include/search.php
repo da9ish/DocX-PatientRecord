@@ -7,7 +7,7 @@
 
 	$search = $_GET['search_txt'];
 
-	$query = "SELECT * FROM `patient` WHERE `f_name` LIKE '".$search."' OR `l_name` LIKE '".$search."'";
+	$query = "SELECT * FROM `patient` WHERE `f_name` LIKE '%".$search."%' OR `l_name` LIKE '%".$search."%' OR `mob_no` LIKE '%".$search."%'";
 	$result = mysqli_query($db, $query);
 
 	while($data = mysqli_fetch_assoc($result)){
@@ -27,6 +27,7 @@
 				<p><strong>Last Diagnosis:</strong> ".$data['diagnosis']."</p>
 				<p><strong>Last Prescription:</strong> ".$data['prescription']."</p>
 				<p><strong>Last Treated On:</strong> ".$data['last_visited']."</p>
+				<p><strong>Mobile No.:</strong> ".$data['mob_no']."</p>
 			</div>
 			<div>
 				<div class=\"fab_edit\" onclick=\"edit('".$data['_id']."')\"><img src=\"border-color.png\"></div>

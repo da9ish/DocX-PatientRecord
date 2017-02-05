@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `docx`
 --
-
+CREATE DATABASE `docx`;
+SELECT `docx`;
 -- --------------------------------------------------------
 
 --

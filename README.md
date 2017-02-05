@@ -22,7 +22,7 @@ A patient record keeping web application for Doctors.
 <a href="https://www.apachefriends.org/index.html">Download</a>
 
 * Download and place all the files in htdocs folder under xampp folder "C:\user\xampp\htdoc".
-Import the docx.sql file in phpmyadmin.
+* Open localhost/phpmyadmin and import the docx.sql file in phpmyadmin.
 
 * Create a new record every time a new patient visits
 * Next time the patient visits just update the records and their record history will be stored in history tab.

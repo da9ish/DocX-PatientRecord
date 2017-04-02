@@ -11,7 +11,7 @@
 
         $servername = "localhost";
 		$user = "root";
-		$pass = "12345";
+		$pass = "";
 		$db_name = "docx";
         
         $this->conn = new mysqli($servername, $user, $pass, $db_name) or die;

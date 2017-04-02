@@ -72,6 +72,8 @@
 			ajax.open("GET", "http://localhost/DocX/include/delete.php?id="+p_id, true);
 			ajax.send();
 
+			deleteHistory(p_id); 
+
 			window.location.reload();
 		}
 
@@ -91,14 +93,19 @@
 		function filter(){
 			var ajax = new XMLHttpRequest();
 			var input = document.getElementById("search");
+			console.log(input.value);
+			var search = input.value;
+			var main_div = document.getElementById("main_div");
+			main_div.style.display = "none";
 
-			ajax.onreadystatechanged = function(){
+			ajax.onreadystatechange = function(){
 				if (this.readyState == 4 && this.status == 200) {
-					console.log(this.responseText)					
+					console.log(this.responseText);
+					document.getElementById("search_div").innerHTML = this.responseText;		
 				}
-			}
+			} 
 
-			ajax.open("GET", "http://localhost/DocX/include/search.php?search_txt="+input.value, true);
+			ajax.open("GET", "http://localhost/DocX/include/search.php?search_txt="+search, true);
 			ajax.send();
 		}
 	</script>
@@ -112,7 +119,7 @@
 
 		nav{
 			background-color: #FFC107;			
-			box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+			box-shadow: 0 2px 5px rgba(0,0,0,.26);
 			position: fixed;
 			width: 100%;
 		}
@@ -198,15 +205,22 @@
 		#tab_3{
 			display: none;
 			padding: 8px;
-		}
+		}		
 
 		input{
 			border: 0;
-			border-bottom: 1px solid #121212;
+			border-bottom: 2px solid rgba(0,0,0,0.25);
 			font-size: 16px;
 			outline: 0;
 			padding: 3px;
 			margin-left: 5px;
+			transition-duration: 0.3s; 
+			background-color: #fafafa 
+		}
+
+		input:focus{
+			border-bottom: 2px solid #FFC107;
+			transition-duration: 0.3s; 
 		}
 
 		.submit{
@@ -229,16 +243,22 @@
 			box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
 		}
 
-		.patient_card{			
+		.patient_card{						
+			transition-duration: 0.2s;
 			width: auto;			
 			height: auto;
 			background-color: #fafafa;
 			padding: 16px;
-			box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14);
 			display: flex;
 			justify-content: space-around;
 			align-items: center;
 			margin-bottom: 16px;
+		}
+
+		.patient_card:hover{
+			transition-duration: 0.2s;
+			box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.26);
 		}
 
 		.pic{
@@ -246,27 +266,41 @@
 		}
 
 		.fab_edit{
+			transition-duration: 0.2s;
 			width: 56px;
 			height: 56px;
 			background-color: #2196F3;
 			border-radius: 50%;
-			box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+			box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.26);
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			margin: 16px;
 		}
 
+		.fab_edit:hover{
+			transform: translateY(-6px);
+			transition-duration: 0.2s;
+			box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.3);
+		}
+
 		.fab_delete{
+			transition-duration: 0.2s;
 			width: 56px;
 			height: 56px;
 			background-color: #f44336;
 			border-radius: 50%;
-			box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+			box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.26);
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			margin: 16px;
+		}
+
+		.fab_delete:hover{
+			transform: translateY(-6px);
+			transition-duration: 0.2s;
+			box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.3);
 		}
 
 		.search_icon{
@@ -276,10 +310,14 @@
 
 		.search_txt{
 			background-color: transparent;
-			border-bottom: 1px solid #FFA000;
+			border-bottom: 2px solid #fafafa;
 			margin-right: 50px; 
 			margin-top: 0;		
 			color: #fafafa;
+		}
+		
+		.search_txt:focus{
+			border-bottom: 2px solid #FFA000;
 		}
 
 		.search_txt[type="search"]{
@@ -346,6 +384,10 @@
 			box-shadow: 0px 2px 2px 0px rgba(0,0,0,.2);
 		}
 
+		#main_div{
+			display: block;
+		}
+
 
 	</style>
 </head>
@@ -378,6 +420,12 @@
 		</div>
 
 		<div id="tab_1">
+
+		<div id="search_div">
+			
+		</div>
+
+		<div id="main_div">
 
 		<?php
 
@@ -415,6 +463,8 @@
 
 		</div>
 
+		</div>
+
 		<div id="tab_2">
 
 			<div class="create_form">
@@ -423,16 +473,16 @@
 
 				<form id="patient_record_new" method="POST" action="http://localhost/DocX/include/insert_patient.php">
 
-				<p>First Name: <input type="text" name="f_name" placeholder="First Name"></p>
-				<p>Last Name: <input type="text" name="l_name" placeholder="Last Name"></p>
-				<p>Age: <input type="number" name="age" placeholder="Age"></p>
+				<p>First Name: <input type="text" name="f_name"></p>
+				<p>Last Name: <input type="text" name="l_name"></p>
+				<p>Age: <input type="number" name="age"></p>
 				<p>Gender: <input type="radio" name="gender" value="Male">Male
 				<input type="radio" name="gender" value="Female">Female</p>
-				<p>Weight: <input type="number" step="any" name="weight" placeholder="Weight">kgs</p>
-				<p>Height: <input type="number" step="any" name="height" placeholder="Height">cm</p>
-				<p>Mobile No.: <input type="number" name="mob_no" placeholder="Mobile No."></p>
-				<p>Daignosis: <textarea name="diagnosis" placeholder="Daignosis"></textarea></p>
-				<p>Prescription: <textarea name="prescription" placeholder="Prescription"></textarea></p>
+				<p>Weight: <input type="number" step="any" name="weight">kgs</p>
+				<p>Height: <input type="number" step="any" name="height">cm</p>
+				<p>Mobile No.: <input type="number" name="mob_no" ></p>
+				<p>Daignosis: <textarea name="diagnosis" ></textarea></p>
+				<p>Prescription: <textarea name="prescription"></textarea></p>
 				<input class="submit" type="submit" name="Submit" value="CREATE">
 
 				</form>
@@ -443,20 +493,27 @@
 
 		<div id="tab_3">
 			<div class="table">
-			<table width="100%" >
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Diagnosis</th>
-					<th>Prescrition</th>
-					<th>LastVisited</th>
-					<th>Actions</th>
-				</tr>
+			<table width="100%" >				
 
 				<?php
 
 				$query2 = "SELECT * FROM `history` ORDER BY `p_name`";
 				$result = mysqli_query($db, $query2);
+
+				if (mysqli_num_rows($result)==0) {
+					echo "<center><img style=\"margin-top: 100px;\" src=\"fav_icon.png\"><p>No Patients Record.</p></center>";
+				}else{											
+
+					echo "<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Diagnosis</th>
+						<th>Prescrition</th>
+						<th>LastVisited</th>
+						<th>Actions</th>
+					</tr>";
+
+				}
 
 				while ($his = mysqli_fetch_assoc($result)) {
 					
